@@ -14,30 +14,78 @@ import { User } from './models/auth.model';
         <div class="container">
           <div class="header-content">
             <div class="header-left">
-              <h1>Financial Analyst Assessment</h1>
-              <p class="subtitle">Evaluate your financial analysis skills</p>
+              <div class="logo">
+                <span class="logo-large">GP</span>
+                <span class="logo-text">GOLD PEY</span>
+              </div>
             </div>
-            <div class="header-right">
+            <nav class="header-right">
+              <a routerLink="/testimonials" class="nav-link">Testimonials</a>
+              <a routerLink="/bilingual" class="nav-link">Are you bilingual?</a>
+              <a routerLink="/code" class="nav-link">Know how to code?</a>
+              <a routerLink="/about" class="nav-link">About</a>
+              <a routerLink="/blog" class="nav-link">Blog</a>
+              <a routerLink="/faq" class="nav-link">FAQ</a>
+              <a routerLink="/safety" class="nav-link">Safety</a>
               <div *ngIf="currentUser" class="user-menu">
                 <span class="user-name">Welcome, {{ currentUser.firstName }}!</span>
-                <button class="btn btn-secondary btn-small" (click)="logout()">Sign Out</button>
+                <a routerLink="/sign-in" class="nav-link">Sign In</a>
+                <button class="btn btn-outline" (click)="logout()">Sign Out</button>
               </div>
               <div *ngIf="!currentUser" class="auth-buttons">
-                <a routerLink="/sign-in" class="btn btn-secondary btn-small">Sign In</a>
-                <a routerLink="/sign-up" class="btn btn-primary btn-small">Sign Up</a>
+                <a routerLink="/sign-in" class="nav-link">Sign In</a>
+                <a routerLink="/sign-up" class="btn btn-primary">Get Started</a>
               </div>
-            </div>
+            </nav>
           </div>
         </div>
       </header>
       <main class="app-main">
-        <div class="container">
-          <router-outlet></router-outlet>
-        </div>
+        <router-outlet></router-outlet>
       </main>
       <footer class="app-footer">
         <div class="container">
-          <p>&copy; 2024 Financial Analyst Assessment Platform</p>
+          <div class="footer-content">
+            <div class="footer-section">
+              <h3>Gold Pey</h3>
+              <div class="footer-links">
+                <a routerLink="/">Home</a>
+                <a routerLink="/about">About</a>
+                <a routerLink="/faq">FAQ</a>
+              </div>
+            </div>
+            <div class="footer-section">
+              <h4>Getting Started</h4>
+              <div class="footer-links">
+                <a routerLink="/sign-up">Create Account</a>
+                <a routerLink="/about">What is Data Annotation?</a>
+                <a routerLink="/safety">Trust & Safety</a>
+              </div>
+            </div>
+            <div class="footer-section">
+              <h4>Specializations</h4>
+              <div class="footer-links">
+                <a routerLink="/code">Programmers</a>
+                <a routerLink="/bilingual">Bilingual</a>
+                <a routerLink="/expert">Expert Team</a>
+              </div>
+            </div>
+            <div class="footer-section">
+              <h4>Resources</h4>
+              <div class="footer-links">
+                <a routerLink="/blog">Blog</a>
+                <a routerLink="/testimonials">Testimonials</a>
+                <a routerLink="/faq">FAQ</a>
+              </div>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p>&copy; 2024 Gold Pey. All rights reserved.</p>
+            <div class="footer-legal">
+              <a routerLink="/privacy">Privacy Policy</a>
+              <a routerLink="/cookies">Cookie Policy</a>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
@@ -47,13 +95,17 @@ import { User } from './models/auth.model';
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      position: relative;
     }
 
     .app-header {
-      background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+      background-color: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(10px);
       color: white;
-      padding: 32px 0;
-      box-shadow: var(--shadow-lg);
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      z-index: 10;
     }
 
     .header-content {
@@ -68,26 +120,50 @@ import { User } from './models/auth.model';
       flex: 1;
     }
 
-    .app-header h1 {
-      font-size: 32px;
-      font-weight: 700;
-      margin-bottom: 8px;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .app-header .subtitle {
-      font-size: 16px;
+    .logo-large {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-text {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
       opacity: 0.9;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
     }
 
     .header-right {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 24px;
+    }
+
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      transition: opacity 0.2s ease;
+    }
+
+    .nav-link:hover {
+      opacity: 0.7;
     }
 
     .auth-buttons {
       display: flex;
-      gap: 12px;
+      align-items: center;
+      gap: 16px;
     }
 
     .user-menu {
@@ -101,33 +177,100 @@ import { User } from './models/auth.model';
       opacity: 0.9;
     }
 
-    .btn-small {
+    .btn-outline {
+      background-color: transparent;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
       padding: 8px 16px;
       font-size: 14px;
     }
 
-    .btn-secondary {
-      background-color: rgba(255, 255, 255, 0.2);
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    .btn-secondary:hover {
-      background-color: rgba(255, 255, 255, 0.3);
+    .btn-outline:hover {
+      background-color: rgba(255, 255, 255, 0.1);
     }
 
     .app-main {
       flex: 1;
-      padding: 40px 0;
+      position: relative;
+      z-index: 1;
     }
 
     .app-footer {
-      background-color: var(--bg-primary);
-      border-top: 1px solid var(--border-color);
-      padding: 24px 0;
-      text-align: center;
-      color: var(--text-secondary);
+      background: rgba(10, 10, 10, 0.9);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 60px 0 30px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-section h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .footer-section h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
       font-size: 14px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-bottom p {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 14px;
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-legal a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-legal a:hover {
+      color: white;
     }
 
     @media (max-width: 768px) {
@@ -138,7 +281,12 @@ import { User } from './models/auth.model';
 
       .header-right {
         width: 100%;
-        justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .nav-link {
+        font-size: 13px;
       }
     }
   `]
