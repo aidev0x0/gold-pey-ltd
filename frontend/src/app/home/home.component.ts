@@ -240,33 +240,67 @@ import { CommonModule } from '@angular/common';
     }
 
     .hero-headline {
-      font-size: 56px;
-      font-weight: 700;
+      font-size: 64px;
+      font-weight: 800;
       line-height: 1.1;
       color: white;
       margin: 0;
-      letter-spacing: -1px;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      letter-spacing: -2px;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .btn-large {
-      padding: 16px 32px;
-      font-size: 16px;
+      padding: 18px 40px;
+      font-size: 17px;
       font-weight: 600;
-      border-radius: 8px;
+      border-radius: 12px;
       width: fit-content;
-      background-color: #3b82f6;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
       color: white;
       border: none;
       cursor: pointer;
-      transition: background-color 0.2s ease, transform 0.2s ease;
-      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-large::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn-large:hover::before {
+      left: 100%;
     }
 
     .btn-large:hover {
-      background-color: #2563eb;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(59, 130, 246, 0.5);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.6);
+      filter: brightness(1.1);
+    }
+
+    .btn-large:active {
+      transform: translateY(-1px) scale(1);
     }
 
     .center-btn {
@@ -295,9 +329,18 @@ import { CommonModule } from '@angular/common';
     }
 
     .media-logo {
-      font-size: 14px;
-      color: white;
-      font-weight: 500;
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 600;
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      transition: all 0.3s;
+    }
+
+    .media-logo:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
     }
 
     .reviews {
@@ -320,7 +363,36 @@ import { CommonModule } from '@angular/common';
 
     .star {
       color: #fbbf24;
-      font-size: 18px;
+      font-size: 20px;
+      filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));
+      animation: twinkle 2s ease-in-out infinite;
+    }
+
+    .star:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .star:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    .star:nth-child(4) {
+      animation-delay: 0.6s;
+    }
+
+    .star:nth-child(5) {
+      animation-delay: 0.8s;
+    }
+
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.7;
+        transform: scale(0.95);
+      }
     }
 
     .rating-text {
@@ -332,20 +404,42 @@ import { CommonModule } from '@angular/common';
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 32px;
-      height: 32px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border-radius: 6px;
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #667eea 0%, #8b5cf6 100%);
+      border-radius: 8px;
       color: white;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
     }
 
     /* Expert Section */
     .expert-section {
-      padding: 80px 0;
-      background: rgba(26, 26, 26, 0.6);
-      backdrop-filter: blur(10px);
+      padding: 100px 0;
+      background: rgba(26, 26, 26, 0.7);
+      backdrop-filter: blur(20px);
+      position: relative;
+    }
+
+    .expert-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent);
     }
 
     .expert-content {
@@ -355,17 +449,20 @@ import { CommonModule } from '@angular/common';
     }
 
     .expert-section h2 {
-      font-size: 36px;
-      font-weight: 700;
+      font-size: 42px;
+      font-weight: 800;
       color: white;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+      line-height: 1.2;
     }
 
     .expert-subtitle {
-      font-size: 18px;
-      color: rgba(255, 255, 255, 0.8);
-      line-height: 1.6;
-      margin-bottom: 30px;
+      font-size: 19px;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.7;
+      margin-bottom: 40px;
+      font-weight: 400;
     }
 
     .expert-fields {
@@ -377,12 +474,22 @@ import { CommonModule } from '@angular/common';
     }
 
     .expert-field {
-      padding: 10px 20px;
-      background: rgba(59, 130, 246, 0.2);
-      border: 1px solid rgba(59, 130, 246, 0.4);
-      border-radius: 6px;
+      padding: 12px 24px;
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 10px;
       color: white;
-      font-weight: 500;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+
+    .expert-field:hover {
+      background: rgba(59, 130, 246, 0.25);
+      border-color: rgba(59, 130, 246, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
     }
 
     .stats {
@@ -398,15 +505,23 @@ import { CommonModule } from '@angular/common';
     }
 
     .stat-value {
-      font-size: 32px;
-      font-weight: 700;
-      color: #3b82f6;
-      margin-bottom: 8px;
+      font-size: 40px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
     }
 
     .stat-label {
       font-size: 16px;
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(255, 255, 255, 0.75);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 13px;
     }
 
     /* Steps Section */
@@ -415,11 +530,14 @@ import { CommonModule } from '@angular/common';
     }
 
     .section-title {
-      font-size: 42px;
-      font-weight: 700;
+      font-size: 48px;
+      font-weight: 800;
       color: white;
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 60px;
+      letter-spacing: -1.5px;
+      line-height: 1.2;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
 
     .steps {
@@ -431,26 +549,45 @@ import { CommonModule } from '@angular/common';
 
     .step {
       text-align: center;
+      padding: 40px 30px;
+      background: rgba(26, 26, 26, 0.6);
+      backdrop-filter: blur(15px);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .step:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      border-color: rgba(59, 130, 246, 0.3);
+      background: rgba(26, 26, 26, 0.75);
     }
 
     .step-number {
-      font-size: 48px;
-      font-weight: 700;
-      color: #3b82f6;
-      margin-bottom: 20px;
+      font-size: 64px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 24px;
+      line-height: 1;
     }
 
     .step h3 {
-      font-size: 24px;
-      font-weight: 600;
+      font-size: 26px;
+      font-weight: 700;
       color: white;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
     }
 
     .step p {
       font-size: 16px;
-      color: rgba(255, 255, 255, 0.7);
-      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.7;
+      font-weight: 400;
     }
 
     /* Features Section */
@@ -468,23 +605,52 @@ import { CommonModule } from '@angular/common';
     }
 
     .feature-item {
-      padding: 30px;
-      background: rgba(26, 26, 26, 0.8);
-      border-radius: 12px;
+      padding: 36px;
+      background: rgba(26, 26, 26, 0.75);
+      backdrop-filter: blur(15px);
+      border-radius: 16px;
       border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .feature-item:hover::before {
+      transform: scaleX(1);
+    }
+
+    .feature-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      border-color: rgba(59, 130, 246, 0.3);
+      background: rgba(26, 26, 26, 0.85);
     }
 
     .feature-item h3 {
-      font-size: 20px;
-      font-weight: 600;
+      font-size: 22px;
+      font-weight: 700;
       color: white;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
+      letter-spacing: -0.3px;
     }
 
     .feature-item p {
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.7);
-      line-height: 1.6;
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.7;
+      font-weight: 400;
     }
 
     /* FAQ Section */
@@ -498,25 +664,36 @@ import { CommonModule } from '@angular/common';
     }
 
     .faq-item {
-      padding: 30px;
-      background: rgba(26, 26, 26, 0.6);
-      backdrop-filter: blur(10px);
-      border-radius: 12px;
+      padding: 32px;
+      background: rgba(26, 26, 26, 0.7);
+      backdrop-filter: blur(15px);
+      border-radius: 16px;
       margin-bottom: 20px;
       border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+
+    .faq-item:hover {
+      transform: translateX(8px);
+      border-color: rgba(59, 130, 246, 0.3);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      background: rgba(26, 26, 26, 0.8);
     }
 
     .faq-item h3 {
-      font-size: 20px;
-      font-weight: 600;
+      font-size: 22px;
+      font-weight: 700;
       color: white;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
+      letter-spacing: -0.3px;
     }
 
     .faq-item p {
       font-size: 16px;
-      color: rgba(255, 255, 255, 0.7);
-      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.7;
+      font-weight: 400;
     }
 
     /* Testimonials Section */
@@ -540,24 +717,49 @@ import { CommonModule } from '@angular/common';
     }
 
     .testimonial-card {
-      padding: 30px;
+      padding: 36px;
       background: rgba(26, 26, 26, 0.8);
-      border-radius: 12px;
+      backdrop-filter: blur(15px);
+      border-radius: 16px;
       border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 60px;
+      color: rgba(59, 130, 246, 0.3);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      border-color: rgba(59, 130, 246, 0.3);
     }
 
     .testimonial-text {
-      font-size: 16px;
+      font-size: 17px;
       color: rgba(255, 255, 255, 0.9);
-      line-height: 1.6;
-      margin-bottom: 20px;
+      line-height: 1.7;
+      margin-bottom: 24px;
       font-style: italic;
+      font-weight: 400;
+      position: relative;
+      z-index: 1;
     }
 
     .testimonial-author {
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.6);
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.7);
       font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     /* CTA Section */

@@ -99,13 +99,14 @@ import { User } from './models/auth.model';
     }
 
     .app-header {
-      background-color: rgba(10, 10, 10, 0.8);
-      backdrop-filter: blur(10px);
+      background-color: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
       color: white;
-      padding: 24px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       position: relative;
       z-index: 10;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
 
     .header-content {
@@ -127,9 +128,13 @@ import { User } from './models/auth.model';
     }
 
     .logo-large {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .logo-text {
@@ -196,12 +201,22 @@ import { User } from './models/auth.model';
     }
 
     .app-footer {
-      background: rgba(10, 10, 10, 0.9);
-      backdrop-filter: blur(10px);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 60px 0 30px;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 80px 0 40px;
       position: relative;
       z-index: 10;
+    }
+
+    .app-footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent);
     }
 
     .footer-content {
@@ -212,34 +227,55 @@ import { User } from './models/auth.model';
     }
 
     .footer-section h3 {
-      font-size: 20px;
-      font-weight: 700;
+      font-size: 22px;
+      font-weight: 800;
       color: white;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
+      letter-spacing: -0.5px;
     }
 
     .footer-section h4 {
-      font-size: 16px;
-      font-weight: 600;
+      font-size: 17px;
+      font-weight: 700;
       color: white;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
+      letter-spacing: -0.3px;
     }
 
     .footer-links {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
     }
 
     .footer-links a {
       color: rgba(255, 255, 255, 0.7);
       text-decoration: none;
-      font-size: 14px;
-      transition: color 0.2s ease;
+      font-size: 15px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-weight: 400;
+      position: relative;
+      padding-left: 0;
+    }
+
+    .footer-links a::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      transition: width 0.3s;
     }
 
     .footer-links a:hover {
       color: white;
+      padding-left: 8px;
+    }
+
+    .footer-links a:hover::before {
+      width: 4px;
     }
 
     .footer-bottom {
