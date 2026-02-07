@@ -24,6 +24,7 @@ import { User } from './models/auth.model';
               <a routerLink="/bilingual" class="nav-link">Are you bilingual?</a>
               <a routerLink="/code" class="nav-link">Know how to code?</a>
               <a routerLink="/about" class="nav-link">About</a>
+              <a routerLink="/careers" class="nav-link">Careers</a>
               <a routerLink="/blog" class="nav-link">Blog</a>
               <a routerLink="/faq" class="nav-link">FAQ</a>
               <a routerLink="/safety" class="nav-link">Safety</a>
@@ -104,9 +105,11 @@ import { User } from './models/auth.model';
       color: white;
       padding: 20px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      position: relative;
-      z-index: 10;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
     }
 
     .header-content {
